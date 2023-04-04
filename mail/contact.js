@@ -6,26 +6,22 @@ $(function () {
         },
         submitSuccess: function ($form, event) {
             event.preventDefault();
-            var name = $("#name").val();
-            var email = $("#email").val();
-            var mobile = $("#mobile").val();
-            var password = $("#password").val();
-            var cnfPassword = $('#confirmPassword').val();
-            var action = $('#sendMessageButton').val();
+            var name = $("input#name").val();
+            var email = $("input#email").val();
+            var subject = $("input#subject").val();
+            var message = $("textarea#message").val();
 
             $this = $("#sendMessageButton");
             $this.prop("disabled", true);
 
             $.ajax({
-                url: "Request.php",
+                url: "contact.php",
                 type: "POST",
                 data: {
-                    action: action,
                     name: name,
                     email: email,
-                    mobile: mobile,
-                    password: password,
-                    confirmPassword: cnfPassword
+                    subject: subject,
+                    message: message
                 },
                 cache: false,
                 success: function () {
